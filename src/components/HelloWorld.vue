@@ -23,24 +23,32 @@ export default {
         type: Phaser.AUTO,
         scale: {
           parent: 'app',
-          mode: Phaser.Scale.FIT
+          mode: Phaser.Scale.FIT,
+          width: 800,
+          height: 600
         },
         scene: {
           init() {
-            this.cameras.main.setBackgroundColor("#24252A");
+
+          },
+          preload(){
+            this.load.image('sky', require('../assets/sky.png'));
+              this.load.image('ground', require('../assets/platform.png'));
+              this.load.image('star', require('../assets/star.png'));
+              this.load.image('bomb', require('../assets/bomb.png'));
+              this.load.spritesheet('dude',
+              require('../assets/dude.png'),
+              { frameWidth: 32, frameHeight: 48 }
+              );
+
           },
           create() {
-            this.helloWorld = this.add.text(
-              this.cameras.main.centerX,
-              this.cameras.main.centerY,
-              "Hello World",
-              { font: "40px Arial",  fill: "#ffffff" }
-            );
-            this.helloWorld.setOrigin(0.5);
+            this.add.image(400, 300, 'sky');
+            this.add.image(400, 300, 'star');
 
           },
           update() {
-            this.helloWorld.angle += 1;
+
           }
         }
       }
